@@ -1,12 +1,12 @@
 import { dataCarouselHero } from "@/data";
 export const metadata = {
-  title: "Welcome to GoTravPapua",
+  title: "Welcome to GOTRAVPAPUA",
   openGraph: {
-    title: "GoTravPapua | Tour & Travel",
+    title: "GOTRAVPAPUA | Tour & Travel",
     description:
       "Your Premier Travel Agent for Unforgettable Papua Adventures! Book Now for Authentic Experiences!",
     url: process.env.NEXT_PUBLIC_HOST,
-    siteName: "GoTravPapua",
+    siteName: "GOTRAVPAPUA",
     images: [
       {
         url: process.env.NEXT_PUBLIC_HOST + dataCarouselHero[0].imageUrl,
@@ -42,7 +42,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "GoTravPapua | Tour & Travel",
+    title: "GOTRAVPAPUA | Tour & Travel",
     description:
       "Your Premier Travel Agent for Unforgettable Papua Adventures! Book Now for Authentic Experiences!",
     images: [process.env.NEXT_PUBLIC_HOST + dataCarouselHero[0].imageUrl],
@@ -57,7 +57,7 @@ export const metadata = {
     yandex: "yandex",
     yahoo: "yahoo",
     other: {
-      me: ["admin@gotravpapua.com", process.env.NEXT_PUBLIC_HOSTNAME],
+      me: ["admin@GOTRAVPAPUA.com", process.env.NEXT_PUBLIC_HOSTNAME],
     },
   },
 };
