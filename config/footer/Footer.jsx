@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
@@ -11,6 +12,10 @@ export default function Footer({ data }) {
       setIsVisible(false);
     }
   };
+
+  function HTMLRenderer({ htmlString }) {
+    return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
+  }
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -60,8 +65,16 @@ export default function Footer({ data }) {
           <div className="container py-5">
             <div className="row y-middle">
               <div className="col-lg-4 md-mb-20">
-                <div className="text-center md-text-start">
-                  <p className="text-white">{data.copyright}</p>
+                <div className="text-center md-text-start text-white flex">
+                  <p className="text-white">
+                    @copyright 2023 All right reserved ||
+                  </p>
+                  <Link
+                    href={process.env.NEXT_PUBLIC_HOST}
+                    className="text-white"
+                  >
+                    www.gotravpapua.com
+                  </Link>
                 </div>
               </div>
               <div className="col-lg-4 md-mb-20 text-center">

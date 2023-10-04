@@ -22,6 +22,7 @@ export default async function Contact({}) {
               src={process.env.NEXT_PUBLIC_HOST + dataCarouselHero[0].imageUrl}
               alt="Breadcrumbs Image"
               height={700}
+              loading="lazy"
               width={1000}
             />
           </div>
@@ -46,7 +47,7 @@ export default async function Contact({}) {
               </div>
               <ul className="my-3 white-color">
                 <li>
-                  <Link className="active" href="index.html">
+                  <Link className="active" href="/">
                     Home
                   </Link>
                 </li>

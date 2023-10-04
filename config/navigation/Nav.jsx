@@ -1,15 +1,18 @@
-"use clinet";
+"use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-
+import { useRouter } from "next/navigation";
 export default function Nav({ data }) {
   const [showSubNavbar, setShowSubNavbar] = useState(true);
-  const [menuClose, setMenuClose] = useState(true);
+  const [isOpen, setIsOpen] = useState(true);
   const [activeMenu, setActiveMenu] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const handleMenuClick = (menu) => {
+    loadingTime();
     setActiveMenu(menu);
+    setIsOpen(true);
   };
 
   const handleScroll = () => {
@@ -21,18 +24,50 @@ export default function Nav({ data }) {
   };
 
   const MenuHandle = () => {
-    setMenuClose(!menuClose);
+    setIsOpen(!isOpen);
   };
 
   useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 2500);
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timeout);
     };
   }, [showSubNavbar]);
 
+  const loadingTime = () => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+    setLoading(true);
+  };
+
+  const hideLoader = () => {
+    if (loading) {
+      return (
+        <div id="loader" className="loader green-color">
+          <div className="loader-container">
+            <div className="loader-icon">
+              <Image
+                src={`${process.env.NEXT_PUBLIC_HOST}assets/images/pre-load-gotrav.png`}
+                width={100}
+                height={100}
+                alt="pre load gotrav"
+              />
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <>
+      {hideLoader()}
       <div className="full-width-header header-style1 home1-modifiy home12-modifiy">
         <header id="rs-header" className="rs-header">
           <div
@@ -106,7 +141,7 @@ export default function Nav({ data }) {
                         <Image
                           src={`${process.env.NEXT_PUBLIC_HOST}assets/images/logo.png`}
                           alt=""
-                          width={500}
+                          width={150}
                           height={500}
                           style={{ height: "100px" }}
                         />
@@ -114,23 +149,34 @@ export default function Nav({ data }) {
                     </div>
                   </div>
                 </div>
+
                 <div className="col-lg-8 text-end">
-                  <div className="rs-menu-area">
+                  <div className="rs-menu-area flex">
                     <div className="main-menu">
-                      <div className="mobile-menu">
+                      <div
+                        className={`mobile-menu ${
+                          isOpen == true
+                            ? "rs-menu-toggle-close"
+                            : "rs-menu-toggle-open"
+                        }`}
+                      >
                         <Link
                           href="/"
                           className="rs-menu-toggle"
                           onClick={() => MenuHandle()}
                         >
-                          {menuClose == true ? (
+                          {isOpen == true ? (
                             <i className="fa fa-bars"></i>
                           ) : (
                             <i className="fa fa-close"></i>
                           )}
                         </Link>
                       </div>
-                      <nav className="rs-menu">
+                      <nav
+                        className={`rs-menu ${
+                          isOpen == true ? "rs-menu-close" : ""
+                        }`}
+                      >
                         <ul className="nav-menu">
                           <li
                             className={`mega-rs ${

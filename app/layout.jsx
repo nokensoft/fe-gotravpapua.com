@@ -6,6 +6,7 @@ import { getSettings } from "@/data/api";
 
 export default async function RootLayout({ children }) {
   const { data } = await getSettings();
+
   return (
     <html lang="en">
       <head>
